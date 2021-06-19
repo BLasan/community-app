@@ -165,6 +165,12 @@
                         getCharge: {method: 'GET', params: {}},
                         update: {method: 'PUT', params: {}}
                     }),
+                    collateralResource: defineResource(apiVer + "/collaterals/:collateralId", {collateralId: '@collateralId'}, {
+                        getAllCollaterals: {method: 'GET', params: {}, isArray: true},
+                        getCollaterals: {method: 'GET', params: {}},
+                        update: {method: 'PUT', params: {}},
+                        post: {method: 'POST', params: {}}
+                    }),
                     chargeTemplateResource: defineResource(apiVer + "/charges/template", {
                         get: {method: 'GET', params: {}, isArray: true},
                         getChargeTemplates: {method: 'GET', params: {}}

@@ -96,6 +96,7 @@ define(['Q', 'underscore', 'mifosX'], function (Q) {
             'product/InterestRateChartController',
             'product/CreateInterestRateChartController',
             'product/EditInterestRateChartController',
+            'product/CollateralController',
             'user/UserController',
             'user/UserFormController',
             'user/UserSettingController',

@@ -220,6 +220,12 @@
             .when('/viewcharge/:id', {
                 templateUrl: 'views/products/viewcharge.html'
             })
+            .when('/collaterals', {
+                templateUrl: 'views/products/collaterals.html'
+            })
+            .when('viewcollateral/:id', {
+                templateUrl: 'views/products/viewcollateral.html'
+            })
             .when('/floatingrates', {
                 templateUrl: 'views/products/floatingrates/FloatingRates.html'
             })
@@ -695,7 +701,13 @@
             .when('/createcharge', {
                 templateUrl: 'views/products/createcharge.html'
             })
+            .when('/createcollateral', {
+                templateUrl: 'views/products/createcollateral.html'
+            })
             .when('/editcharge/:id', {
+                templateUrl: 'views/products/editcharge.html'
+            })
+            .when('/editcollateral/:id', {
                 templateUrl: 'views/products/editcharge.html'
             })
             .when('/productivesheet/:officeId/:officeName/:meetingDate/:staffId', {
