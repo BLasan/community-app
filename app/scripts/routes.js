@@ -223,7 +223,7 @@
             .when('/collaterals', {
                 templateUrl: 'views/products/collaterals.html'
             })
-            .when('viewcollateral/:id', {
+            .when('/viewcollateral/:id', {
                 templateUrl: 'views/products/viewcollateral.html'
             })
             .when('/floatingrates', {
@@ -708,7 +708,7 @@
                 templateUrl: 'views/products/editcharge.html'
             })
             .when('/editcollateral/:id', {
-                templateUrl: 'views/products/editcharge.html'
+                templateUrl: 'views/products/editcollateral.html'
             })
             .when('/productivesheet/:officeId/:officeName/:meetingDate/:staffId', {
                 templateUrl: 'views/collection/productivecollectionsheet.html'

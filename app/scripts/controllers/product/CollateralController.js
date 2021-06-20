@@ -19,10 +19,10 @@
             // };
 
             scope.CollateralPerPage =15;
-            scope.$broadcast('ChargeDataLoadingStartEvent');
+            //scope.$broadcast('CollateralDataLoadingStartEvent');
             resourceFactory.collateralResource.getAllCollaterals(function (data) {
                 scope.collaterals = data;
-                scope.$broadcast('ChargeDataLoadingCompleteEvent');
+                //scope.$broadcast('CollateralDataLoadingCompleteEvent');
             });
         }
     });

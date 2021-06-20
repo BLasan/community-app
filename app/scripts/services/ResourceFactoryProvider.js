@@ -165,11 +165,12 @@
                         getCharge: {method: 'GET', params: {}},
                         update: {method: 'PUT', params: {}}
                     }),
-                    collateralResource: defineResource(apiVer + "/collaterals/:collateralId", {collateralId: '@collateralId'}, {
+                    collateralResource: defineResource(apiVer + "/collateral-management/:collateralId", {collateralId: '@collateralId'}, {
                         getAllCollaterals: {method: 'GET', params: {}, isArray: true},
-                        getCollaterals: {method: 'GET', params: {}},
+                        get: {method: 'GET', params: {}},
                         update: {method: 'PUT', params: {}},
-                        post: {method: 'POST', params: {}}
+                        save: {method: 'POST', params: {}},
+                        delete: {method: 'DELETE', params: {}}
                     }),
                     chargeTemplateResource: defineResource(apiVer + "/charges/template", {
                         get: {method: 'GET', params: {}, isArray: true},
