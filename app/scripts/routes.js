@@ -223,6 +223,18 @@
             .when('/collaterals', {
                 templateUrl: 'views/products/collaterals.html'
             })
+            .when('/createclientcollateral/:id', {
+                templateUrl: 'views/clients/createclientcollateral.html'
+            })
+            .when('clients/:id/editclientcollateral/:collateralId', {
+                templateUrl: 'views/clients/editclientcollateral.html'
+            })
+            .when('/clients/:id/viewclientcollateral/:collateralId', {
+                templateUrl: 'views/clients/viewclientcollateral.html'
+            })
+            .when('/clients/:id/viewallclientcollaterals', {
+                templateUrl: 'views/clients/viewallclientcollaterals.html'
+            })
             .when('/viewcollateral/:id', {
                 templateUrl: 'views/products/viewcollateral.html'
             })

@@ -1,6 +1,7 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CollateralController: function (scope, resourceFactory, location) {
+        ViewAllClientCollateralController: function (scope, resourceFactory, routeParams, location) {
+            scope.clientId = routeParams.id;
 
             scope.routeTo = function (id) {
                 location.path('/viewcollateral/' + id);
@@ -19,13 +20,13 @@
 
             scope.CollateralPerPage =15;
             //scope.$broadcast('CollateralDataLoadingStartEvent');
-            resourceFactory.collateralResource.getAllCollaterals(function (data) {
+            resourceFactory.clientcollateralResource.getAllCCollaterals({clientId: scope.clientId}, function (data) {
                 scope.collaterals = data;
                 //scope.$broadcast('CollateralDataLoadingCompleteEvent');
             });
         }
     });
-    mifosX.ng.application.controller('CollateralController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.CollateralController]).run(function ($log) {
-        $log.info("CollateralController initialized");
+    mifosX.ng.application.controller('ViewAllClientCollateralController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.ViewAllClientCollateralController]).run(function ($log) {
+        $log.info("ViewAllClientCollateralController initialized");
     });
 }(mifosX.controllers || {}));

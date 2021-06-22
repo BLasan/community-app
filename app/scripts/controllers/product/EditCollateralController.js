@@ -2,7 +2,8 @@
     mifosX.controllers = _.extend(module, {
         EditCollateralController: function (scope, resourceFactory, routeParams, location) {
 
-            scope.collateralId = routeParams.id;
+            scope.collateralId = routeParams.collateralId;
+            scope.clientId = routeParams.id;
             resourceFactory.collateralResource.get({collateralId: scope.collateralId}, function (data) {
                 scope.collateral = data;
                 scope.formData = {
@@ -21,6 +22,7 @@
 
             scope.submit = function () {
                 this.formData.locale = scope.optlang.code;
+                console.log(this.formData)
                 resourceFactory.collateralResource.put(this.formData, function (data) {
                     location.path('/viewcollateral/' + data.loanId);
                 });
