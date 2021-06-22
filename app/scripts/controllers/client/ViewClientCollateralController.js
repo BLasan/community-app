@@ -1,14 +1,16 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewClientCollateralController: function (scope, resourceFactory, routeParams, location) {
+        ViewClientCollateralController: function (scope, resourceFactory, routeParams, location, $uibModal) {
 
-            scope.collateralTypes = [];
             scope.formData = {};
             scope.clientId = routeParams.id;
             scope.collateralId = routeParams.collateralId;
+            scope.loanTransactions = [];
+            console.log(routeParams);
 
-            resourceFactory.clientcollateralResource.get({clientId: scope.clientId, collateralId: collateralId}, function (data) {
-                scope.collaterals = data;
+            resourceFactory.clientcollateralResource.get({clientId: scope.clientId, collateralParamId: scope.collateralId}, function (data) {
+                scope.collateral = data;
+                scope.loanTransactions = scope.collateral.loanTransactionData;
             });
 
             scope.deleteClientCollateral = function () {
@@ -18,11 +20,14 @@
                 });
             };
 
+            scope.TransactionsPerPage =15;
+
             var CollateralDeleteCtrl = function ($scope, $uibModalInstance) {
                 $scope.delete = function () {
-                    resourceFactory.collateralResource.delete({cleintId: id, collateralId: scope.collateralId}, function (data) {
+                    console.log(scope.clientId);
+                    resourceFactory.clientcollateralResource.delete({clientId: scope.clientId, collateralParamId: scope.collateralId}, function (data) {
                         $uibModalInstance.close('delete');
-                        location.path('/clients/' + scope.cleintId + '/viewclientcollateral/' + scope.collateralId);
+                        location.path('/viewclient/' + scope.clientId);
                     });
                 };
                 $scope.cancel = function () {
@@ -43,7 +48,7 @@
 
         }
     });
-    mifosX.ng.application.controller('ViewClientCollateralController', ['$scope', 'ResourceFactory', '$routeParams', '$location', mifosX.controllers.ViewClientCollateralController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewClientCollateralController', ['$scope', 'ResourceFactory', '$routeParams', '$location', '$uibModal', mifosX.controllers.ViewClientCollateralController]).run(function ($log) {
         $log.info("ViewClientCollateralController initialized");
     });
 }(mifosX.controllers || {}));

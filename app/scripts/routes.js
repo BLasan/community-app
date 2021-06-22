@@ -226,13 +226,13 @@
             .when('/createclientcollateral/:id', {
                 templateUrl: 'views/clients/createclientcollateral.html'
             })
-            .when('clients/:id/editclientcollateral/:collateralId', {
+            .when('/viewclient/:id/editclientcollateral/:collateralId', {
                 templateUrl: 'views/clients/editclientcollateral.html'
             })
-            .when('/clients/:id/viewclientcollateral/:collateralId', {
+            .when('/viewclient/:id/viewclientcollateral/:collateralId', {
                 templateUrl: 'views/clients/viewclientcollateral.html'
             })
-            .when('/clients/:id/viewallclientcollaterals', {
+            .when('/viewclient/:id/viewallclientcollaterals', {
                 templateUrl: 'views/clients/viewallclientcollaterals.html'
             })
             .when('/viewcollateral/:id', {

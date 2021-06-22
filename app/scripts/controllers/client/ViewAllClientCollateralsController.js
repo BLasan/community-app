@@ -2,9 +2,9 @@
     mifosX.controllers = _.extend(module, {
         ViewAllClientCollateralController: function (scope, resourceFactory, routeParams, location) {
             scope.clientId = routeParams.id;
-
+            console.log(routeParams)
             scope.routeTo = function (id) {
-                location.path('/viewcollateral/' + id);
+                location.path('/clients/' + routeParams.id + '/viewclientcollateral/' + id);
             };
 
             // if (!scope.searchCriteria.collaterals) {
@@ -20,7 +20,8 @@
 
             scope.CollateralPerPage =15;
             //scope.$broadcast('CollateralDataLoadingStartEvent');
-            resourceFactory.clientcollateralResource.getAllCCollaterals({clientId: scope.clientId}, function (data) {
+            resourceFactory.clientcollateralResource.getAllCollaterals({clientId: scope.clientId}, function (data) {
+                console.log(data)
                 scope.collaterals = data;
                 //scope.$broadcast('CollateralDataLoadingCompleteEvent');
             });

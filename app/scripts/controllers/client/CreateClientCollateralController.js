@@ -8,17 +8,29 @@
             scope.disable = true;
             scope.collateralDataRequestBody = {};
             scope.collateralId;
+            console.log(routeParams);
+
+            scope.updateValues = function () {
+                scope.formData.quantity = scope.formData.quantity * 1.0;
+                scope.formData.total = scope.formData.quantity * scope.formData.basePrice;
+                scope.formData.totalCollateral = scope.formData.total * scope.formData.pctToBase/100.00;
+            }
 
             scope.collateralProductChange = function (collateralId) {
-                resourceFactory.loanResource.get({clientId: clientId, collateralId: collateralId}, function (data) {
+                resourceFactory.collateralResource.get({collateralId: collateralId}, function (data) {
                     scope.collateralData = data;
                     scope.collateralId = collateralId;
-                    scope.formData.name = collateralData.name;
-                    scope.formData.type = collateralData.quality;
-                    scope.formData.basePrice = collateralData.basePrice;
-                    scope.formData.pctToBase = collateralData.pctToBase;
-                    scope.formData.unitType = collateralData.unitType;
+                    scope.formData.name = scope.collateralData.name;
+                    scope.formData.type = scope.collateralData.quality;
+                    scope.formData.basePrice = scope.collateralData.basePrice;
+                    scope.formData.pctToBase = scope.collateralData.pctToBase;
+                    scope.formData.unitType = scope.collateralData.unitType;
+                    scope.formData.collateralId = collateralId;
+                    scope.formData.quantity = 0.0;
+                    scope.formData.total = 0.0;
+                    scope.formData.totalCollateral = 0.0
                     scope.disabled = false;
+                    console.log(scope.formData)
                 });
 
                 // resourceFactory.loanResource.get({resourceType: 'template', templateType: 'collateral', productId: loanProductId, fields: 'id,loanCollateralOptions'}, function (data) {
@@ -27,7 +39,7 @@
 
             }
 
-            resourceFactory.clientcollateralResource.getAllCollaterals(function (data) {
+            resourceFactory.collateralResource.getAllCollaterals(function (data) {
                 scope.collaterals = data;
             });
 
@@ -43,12 +55,17 @@
             scope.submit = function () {
                 this.formData.locale = scope.optlang.code;
                 console.log(this.formData);
-                scope.collateralDataRequestBody.collateralId = scope.collateralId;
-                scope.collateralDataRequestBody.quantity = this.formData.quantity;
-                scope.collateralDataRequestBody.locale = this.formData.locale;
 
-                resourceFactory.clientcollateralResource.save({clientId: scope.clientId}, scope.collateralDataRequestBody, function (data) {
-                    location.path('/clients/' + scope.clientId + '/viewclientcollateral/' + data.resourceId);
+                delete this.formData.name;
+                delete this.formData.pctToBase;
+                delete this.formData.basePrice;
+                delete this.formData.type;
+                delete this.formData.unitType;
+                delete this.formData.total;
+                delete this.formData.totalCollateral;
+
+                resourceFactory.clientcollateralResource.save({clientId: scope.clientId}, this.formData, function (data) {
+                    location.path('/viewclient/' + scope.clientId + '/viewclientcollateral/' + data.resourceId);
                 });
             };
 

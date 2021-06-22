@@ -2,16 +2,15 @@
     mifosX.controllers = _.extend(module, {
         CreateCollateralController: function (scope, resourceFactory, routeParams, location) {
 
-            scope.collateralTypes = [];
+            scope.currencyOptions = [];
             scope.formData = {};
             scope.collateralId = routeParams.id;
 
             // TODO: Get template
 
-            // resourceFactory.loanCollateralTemplateResource.get({loanId: scope.loanId}, function (data) {
-            //     scope.collateralTypes = data.allowedCollateralTypes;
-            //     scope.formData.collateralTypeId = data.allowedCollateralTypes[0].id;
-            // });
+            resourceFactory.collateralTemplateResource.getAllCurrency(function (data) {
+                scope.currencyOptions = data;
+            });
 
             scope.cancel = function () {
                 location.path('/collaterals/');
@@ -19,6 +18,7 @@
 
             scope.submit = function () {
                 this.formData.locale = scope.optlang.code;
+                // console.log(this.formData);
                 resourceFactory.collateralResource.save(this.formData, function (data) {
                     location.path('/viewcollateral/' + data.resourceId);
                 });

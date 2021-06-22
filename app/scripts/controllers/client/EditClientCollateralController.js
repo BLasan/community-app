@@ -6,9 +6,16 @@
             scope.clientId = routeParams.id;
             scope.collateralId = routeParams.collateralId;
             scope.collateralDataRequestBody = {};
+            console.log(routeParams);
 
-            resourceFactory.clientcollateralResource.get({clientId: scope.clientId, collateralId: collateralId}, function (data) {
+            resourceFactory.clientcollateralResource.get({clientId: scope.clientId, collateralParamId: scope.collateralId}, function (data) {
                 scope.collaterals = data;
+                scope.formData = {
+                    name: data.name,
+                    quantity: data.quantity,
+                    total: data.total,
+                    totalCollateral: data.totalCollateral
+                }
             });
 
             // resourceFactory.loanCollateralTemplateResource.get({loanId: scope.loanId}, function (data) {
@@ -25,8 +32,8 @@
                 scope.collateralDataRequestBody.collateralId = scope.collateralId;
                 scope.collateralDataRequestBody.quantity = this.formData.quantity;
                 scope.collateralDataRequestBody.locale = this.formData.locale;
-                resourceFactory.clientcollateralResource.save({clientId: scope.clientId, collateralId: scope.collateralId}, scope.collateralDataRequestBody, function (data) {
-                    location.path('/clients/' + scope.clientId + '/viewclientcollateral/' + data.resourceId);
+                resourceFactory.clientcollateralResource.update({clientId: scope.clientId, collateralParamId: scope.collateralId}, scope.collateralDataRequestBody, function (data) {
+                    location.path('/viewclient/' + scope.clientId + '/viewclientcollateral/' + data.resourceId);
                 });
             };
 

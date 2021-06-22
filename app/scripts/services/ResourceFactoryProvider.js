@@ -165,12 +165,12 @@
                         getCharge: {method: 'GET', params: {}},
                         update: {method: 'PUT', params: {}}
                     }),
-                    clientcollateralResource: defineResource(apiVer + "/clients/:clientId/collaterals/:collateralId", {collateralId: '@collateralId', clientId: '@clientId'}, {
+                    clientcollateralResource: defineResource(apiVer + "/clients/:clientId/collaterals/:collateralParamId", {clientId: '@clientId', collateralParamId: '@collateralParamId'}, {
                         getAllCollaterals: {method: 'GET', params: {}, isArray: true},
                         get: {method: 'GET', params: {}},
                         update: {method: 'PUT', params: {}},
-                        save: {method: 'POST', params: {}},
-                        delete: {method: 'DELETE', params: {}}
+                        //save: {method: 'POST', params: {}},
+                        delete: {method: 'DELETE'}
                     }),
                     collateralResource: defineResource(apiVer + "/collateral-management/:collateralId", {collateralId: '@collateralId'}, {
                         getAllCollaterals: {method: 'GET', params: {}, isArray: true},
@@ -178,6 +178,9 @@
                         update: {method: 'PUT', params: {}},
                         save: {method: 'POST', params: {}},
                         delete: {method: 'DELETE', params: {}}
+                    }),
+                    collateralTemplateResource: defineResource(apiVer + "/collateral-management/template", {}, {
+                        getAllCurrency: {method: 'GET', params: {}, isArray: true},
                     }),
                     chargeTemplateResource: defineResource(apiVer + "/charges/template", {
                         get: {method: 'GET', params: {}, isArray: true},

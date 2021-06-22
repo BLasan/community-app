@@ -21,21 +21,17 @@
             <thead>
             <tr class="graybg">
                 <th>{{'label.heading.name' | translate}}</th>
-                <th>{{'label.heading.quality' | translate}}</th>
-                <th>{{'label.heading.basePrice' | translate}}</th>
-                <th>{{'label.heading.pctToBase' | translate}}</th>
-                <th>{{'label.heading.unitType' | translate}}</th>
                 <th>{{'label.heading.quantity' | translate}}</th>
+                <th>{{'label.heading.totalValue' | translate}}</th>
+                <th>{{'label.heading.totalCollateralValue' | translate}}</th>
             </tr>
             </thead>
             <tbody>
             <tr class="pointer-main" dir-paginate="collateral in collaterals | orderBy:'name':reverse |  itemsPerPage: CollateralsPerPage">
                 <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.name | translate}}</td>
-                <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.quality | translate }}</td>
-                <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.basePrice}}</td>
-                <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.pctToBase}}</td>
-                <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.unitType}}</td>
                 <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.quantity}}</td>
+                <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.totalValue}}</td>
+                <td class="pointer" data-ng-click="routeTo(collateral.id)">{{collateral.totalCollateralValue}}</td>
                 <!-- <td class="pointer" data-ng-click="routeTo(collateral.id)">
                     <i class="fa fa-stop {{'collaterals.StatusType.active.' + charge.active | StatusLookup}}" uib-tooltip="{{'label.tooltip.charges.active.' + charge.active | translate}}" tooltip-placement="right"></i>
                 </td> -->
