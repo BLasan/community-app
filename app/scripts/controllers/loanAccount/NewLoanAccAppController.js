@@ -24,6 +24,9 @@
             scope.disabled = true;
             scope.translate= translate;
             scope.rateFlag=false;
+            scope.collateralAddedDataArray = [];
+            scope.collateralsData = {};
+            scope.addedCollateral = {};
 
             scope.date.first = new Date();
 
@@ -52,7 +55,7 @@
 
             resourceFactory.clientcollateralTemplateResource.getAllCollaterals({clientId: scope.clientId}, function(data) {
                 scope.collateralsData = data;
-                console.log(data);
+                console.log(scope.collateralsData);
             })
 
             resourceFactory.loanResource.get(scope.inparams, function (data) {
@@ -298,17 +301,25 @@
             // };
 
             scope.addCollateral = function () {
-                scope.collaterals.push({collateralId: scope.collateralFormData.collateralId, quantity: scope.collateralFormData.quantity});
+                scope.collateralAddedDataArray.push(scope.collateralsData.filter((collateral) => scope.collateralFormData.collateralId == collateral.collateralId)[0]);
+                console.log(scope.collateralAddedDataArray);
+                scope.collateralsData = scope.collateralsData.filter((collateral) => scope.collateralFormData.collateralId != collateral.collateralId);
+                console.log(scope.collateralsData);
+                scope.collaterals.push({collateralId: scope.collateralFormData.collateralId, quantity: scope.collateralFormData.quantity, total: scope.collateralFormData.total, totalCollateral: scope.collateralFormData.totalCollateral});
             };
 
             scope.updateValues = function() {
                 scope.collateralObject = scope.collateralsData.filter((collateral) => collateral.collateralId == scope.collateralFormData.collateralId)[0];
                 scope.collateralFormData.total = scope.collateralFormData.quantity * scope.collateralObject.basePrice;
-                scope.collateralFormData.totalCollateral = scope.collateralFormData.total * scope.collateralObject.pctToBase;
+                scope.collateralFormData.totalCollateral = scope.collateralFormData.total * scope.collateralObject.pctToBase / 100.0;
             }
 
             scope.deleteCollateral = function (index) {
+                scope.collateralId = scope.collaterals[index].collateralId;
+                scope.collateralObject = scope.collateralAddedDataArray.filter((collateral) => collateral.collateralId == collateralId)[0];
+                scope.collateralsData.push(collateralObject);
                 scope.collaterals.splice(index, 1);
+                
             };
 
             scope.previewRepayments = function () {
@@ -418,7 +429,7 @@
                 if (scope.collaterals.length > 0) {
                     scope.formData.collateral = [];
                     for (var i in scope.collaterals) {
-                        scope.formData.collateral.push({collateralId: scope.collaterals[i].collateralId, quantity: scope.collaterals[i].quantity});
+                        scope.formData.collateral.push({clientCollateralId: scope.collaterals[i].collateralId, quantity: scope.collaterals[i].quantity * 1.0});
                     }
                     ;
                 }

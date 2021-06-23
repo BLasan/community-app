@@ -690,8 +690,8 @@
                             <label class="control-label col-sm-1">
                                 <strong>{{ 'label.heading.collaterals' | translate }}</strong>
                             </label>
-                            <select ng-model="collateralFormData.collateralId" ng-options="collaterals.name for collateral in collateralsData"
-                                value="{{collaterals.collateralId}}" class="form-control width170px col-sm-2">
+                            <select ng-model="collateralFormData.collateralId" ng-options="collateral.collateralId as collateral.name for collateral in collateralsData"
+                                value="{{collateral.collateralId}}" class="form-control width170px col-sm-2">
                             </select>&nbsp;&nbsp;
                             <div class="col-sm-2">
                                 <input class="form-control" type="text" ng-model="collateralFormData.quantity" placeholder="{{'label.input.quantity' | translate}}"
@@ -714,14 +714,14 @@
                         <div>
                             <table class="" class="width100" ng-show="collaterals.length>0">
                                 <tr class="graybg">
-                                    <th>{{'label.heading.name' | translate}}</th>
+                                    <th>{{'label.heading.id' | translate}}</th>
                                     <th>{{'label.heading.quantity' | translate}}</th>
                                     <th>{{'label.heading.totalValue' | translate}}</th>
                                     <th>{{'label.heading.totalCollateralValue' | translate}}</th>
                                 </tr>
                                 <tr ng-repeat="collateral in collaterals">
                                     <td>
-                                        <input type="text" class="input-sm form-control" ng-model="collateral.name" readonly>
+                                        <input type="text" class="input-sm form-control" ng-model="collateral.collateralId" readonly>
                                     </td>
                                     <td>
                                         <input id="{{collaterals[$index].quantity}}" type="text" class="form-control" ng-model="collateral.quantity" readonly>
