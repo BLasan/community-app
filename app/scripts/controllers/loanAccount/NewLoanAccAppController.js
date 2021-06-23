@@ -50,6 +50,11 @@
 
             scope.inparams.staffInSelectedOfficeOnly = true;
 
+            resourceFactory.clientcollateralTemplateResource.getAllCollaterals({clientId: scope.clientId}, function(data) {
+                scope.collateralsData = data;
+                console.log(data);
+            })
+
             resourceFactory.loanResource.get(scope.inparams, function (data) {
                 scope.products = data.productOptions;
                 scope.ratesEnabled = data.isRatesEnabled;
@@ -283,14 +288,24 @@
                 }
             };
 
+            // scope.addCollateral = function () {
+            //     if (scope.collateralFormData.collateralIdTemplate && scope.collateralFormData.collateralValueTemplate) {
+            //         scope.collaterals.push({type: scope.collateralFormData.collateralIdTemplate.id, name: scope.collateralFormData.collateralIdTemplate.name, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate});
+            //         scope.collateralFormData.collateralIdTemplate = undefined;
+            //         scope.collateralFormData.collateralValueTemplate = undefined;
+            //         scope.collateralFormData.collateralDescriptionTemplate = undefined;
+            //     }
+            // };
+
             scope.addCollateral = function () {
-                if (scope.collateralFormData.collateralIdTemplate && scope.collateralFormData.collateralValueTemplate) {
-                    scope.collaterals.push({type: scope.collateralFormData.collateralIdTemplate.id, name: scope.collateralFormData.collateralIdTemplate.name, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate});
-                    scope.collateralFormData.collateralIdTemplate = undefined;
-                    scope.collateralFormData.collateralValueTemplate = undefined;
-                    scope.collateralFormData.collateralDescriptionTemplate = undefined;
-                }
+                scope.collaterals.push({collateralId: scope.collateralFormData.collateralId, quantity: scope.collateralFormData.quantity});
             };
+
+            scope.updateValues = function() {
+                scope.collateralObject = scope.collateralsData.filter((collateral) => collateral.collateralId == scope.collateralFormData.collateralId)[0];
+                scope.collateralFormData.total = scope.collateralFormData.quantity * scope.collateralObject.basePrice;
+                scope.collateralFormData.totalCollateral = scope.collateralFormData.total * scope.collateralObject.pctToBase;
+            }
 
             scope.deleteCollateral = function (index) {
                 scope.collaterals.splice(index, 1);
@@ -403,7 +418,7 @@
                 if (scope.collaterals.length > 0) {
                     scope.formData.collateral = [];
                     for (var i in scope.collaterals) {
-                        scope.formData.collateral.push({type: scope.collaterals[i].type, value: scope.collaterals[i].value, description: scope.collaterals[i].description});
+                        scope.formData.collateral.push({collateralId: scope.collaterals[i].collateralId, quantity: scope.collaterals[i].quantity});
                     }
                     ;
                 }

@@ -172,6 +172,9 @@
                         //save: {method: 'POST', params: {}},
                         delete: {method: 'DELETE'}
                     }),
+                    clientcollateralTemplateResource: defineResource(apiVer + "/client/:clientId/collaterals/template", {clientId: '@clientId'}, {
+                        getAllCollaterals: {method: 'GET', params: {}, isArray: true},
+                    }),
                     collateralResource: defineResource(apiVer + "/collateral-management/:collateralId", {collateralId: '@collateralId'}, {
                         getAllCollaterals: {method: 'GET', params: {}, isArray: true},
                         get: {method: 'GET', params: {}},
