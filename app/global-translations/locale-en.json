@@ -91,6 +91,8 @@
   "label.heading.principal": "Principal",
   "label.heading.amount": "Amount",
   "label.heading.date": "Date",
+  "label.heading.accountNo": "Account No",
+  "label.heading.checkNo": "Check No",
   "label.heading.transactiontype": "Transaction Type",
   "label.heading.due": "Due",
   "label.heading.paid": "Paid",

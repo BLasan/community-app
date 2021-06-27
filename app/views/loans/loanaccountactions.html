@@ -127,6 +127,33 @@
                     </div>
                 </div>
 
+                <table class="" class="width100">
+                    <tr class="graybg">
+                        <th>{{'label.heading.name' | translate}}</th>
+                        <th>{{'label.heading.date' | translate}}</th>
+                        <th>{{'label.heading.accountNo' | translate}}</th>
+                        <th>{{'label.heading.checkNo' | translate}}</th>
+                        <th>{{'label.heading.amount' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="collateral in collaterals">
+                        <td>
+                            <input type="text" class="input-sm form-control" ng-model="collateral.name" readonly>
+                        </td>
+                        <td>
+                            <input id="{{collaterals[$index].value}}" type="text" class="form-control" ng-model="collateral.value">
+                        </td>
+                        <td>
+                            <input id="{{collaterals[$index].description}}" type="text" ng-model="collateral.description" placeholder="{{'label.input.description' | translate}}"
+                                class="form-control" />
+                        </td>
+                        <td>
+                            <a ng-click="deleteCollateral($index)">
+                                <i class="fa fa-times-circle fa-2x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
                 <div class="form-group" ng-show="principalPortion">
                     <label class="control-label col-sm-2" for="principalPortion">{{ 'label.input.principal' |
                         translate}}</label>
