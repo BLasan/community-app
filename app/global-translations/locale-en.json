@@ -90,6 +90,8 @@
   "label.heading.loan": "Loan",
   "label.heading.principal": "Principal",
   "label.heading.amount": "Amount",
+  "label.heading.accountNo": "Account No",
+  "label.heading.installment": "Installment",
   "label.heading.date": "Date",
   "label.heading.accountNo": "Account No",
   "label.heading.checkNo": "Check No",

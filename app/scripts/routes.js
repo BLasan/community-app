@@ -190,6 +190,12 @@
             .when('/loan/:loanId/viewcollateral/:id', {
                 templateUrl: 'views/loans/viewloancollateral.html'
             })
+            .when('/loan/:loanId/viewpostdatedchecks/:id', {
+                templateUrl: 'views/loans/viewpostdatedchecks.html'
+            })
+            .when('/loan/:loanId/editpostdatedcheck/:id', {
+                templateUrl: 'views/loans/editpostdatedcheck.html'
+            })
             .when('/loan/:loanId/viewcharge/:id', {
                 templateUrl: 'views/loans/viewloancharge.html'
             })

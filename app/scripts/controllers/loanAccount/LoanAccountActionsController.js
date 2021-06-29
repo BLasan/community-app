@@ -21,6 +21,7 @@
             scope.processDate = false;
             scope.submittedDatatables = [];
             var submitStatus = [];
+            scope.postDatedChecks = [];
 
             rootScope.RequestEntities = function(entity,status,productId){
                 resourceFactory.entityDatatableChecksResource.getAll({limit:-1},function (response) {
@@ -168,7 +169,9 @@
                     resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'disburse'}, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         scope.numberOfRepayments = data.numberOfRepayments;
-                        console.log(data)
+                        scope.postDatedChecks = data.loanRepaymentScheduleInstallments;
+                        console.log(data);
+                        console.log(scope.postDatedChecks);
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
                         }
