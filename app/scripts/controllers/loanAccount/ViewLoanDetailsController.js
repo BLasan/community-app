@@ -157,7 +157,7 @@
                 console.log(id);
                 resourceFactory.postDatedChecks.get({loanId: routeParams.id, installmentId: id}, function(data) {
                     scope.postDatedChecks = data;
-                    location.path('/loan/' + scope.loandetails.id + '/viewpostdatedcheck/' + data.id);
+                    location.path('/loan/' + scope.loandetails.id + '/viewpostdatedcheck/' + id);
                 })
                 //scope.id = scope.postDatedChecks.filter((check) => check.installmentId === id)[0].id;
             }

@@ -127,39 +127,12 @@
                     </div>
                 </div>
 
-                <table class="" class="width100" ng-show="action === disburse">
-                    <tr class="graybg">
-                        <th>{{'label.heading.name' | translate}}</th>
-                        <th>{{'label.heading.date' | translate}}</th>
-                        <th>{{'label.heading.accountNo' | translate}}</th>
-                        <th>{{'label.heading.checkNo' | translate}}</th>
-                        <th>{{'label.heading.amount' | translate}}</th>
-                    </tr>
-                    <tr ng-repeat="collateral in collaterals">
-                        <td>
-                            <input type="text" class="input-sm form-control" ng-model="collateral.name" readonly>
-                        </td>
-                        <td>
-                            <input id="{{collaterals[$index].value}}" type="text" class="form-control" ng-model="collateral.value">
-                        </td>
-                        <td>
-                            <input id="{{collaterals[$index].description}}" type="text" ng-model="collateral.description" placeholder="{{'label.input.description' | translate}}"
-                                class="form-control" />
-                        </td>
-                        <td>
-                            <a ng-click="deleteCollateral($index)">
-                                <i class="fa fa-times-circle fa-2x"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-
                 <div class="form-group" ng-show="principalPortion">
                     <label class="control-label col-sm-2" for="principalPortion">{{ 'label.input.principal' |
                         translate}}</label>
 
                     <div class="col-sm-3">
-                        <input id="principalPortion" type="text" name="principa" ng-model="principalPortion"
+                        <input id="principalPortion" type="text" name="principal" ng-model="principalPortion"
                                class="form-control"
                                number-format readonly>
                     </div>
@@ -280,6 +253,38 @@
                         </div>
                     </div>
                 </div>
+
+                <table class="" class="width100" ng-show="action === 'disburse'">
+                    <tr class="graybg">
+                        <th>{{'label.heading.installmentId' | translate}}</th>
+                        <th>{{'label.heading.name' | translate}}</th>
+                        <th>{{'label.heading.amount' | translate}}</th>
+                        <th>{{'label.heading.date' | translate}}</th>
+                        <th>{{'label.heading.accountNo' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="check in postDatedChecks">
+                        <td>
+                            <input id="{{postDatedChecks[$index].installmentId}}" type="text" class="form-control" ng-model="check.installmentId" readonly>
+                        </td>
+                        <td>
+                            <input id="{{postDatedChecks[$index].name}}" type="text" class="form-control" ng-model="check.name">
+                        </td>
+                        <td>
+                            <input id="{{postDatedChecks[$index].amount}}" type="text" class="form-control" ng-model="check.amount" readonly>
+                        </td>
+                        <td>
+                            <input id="{{postDatedChecks[$index].date}}" type="text"
+                            datepicker-pop="dd MMMM yyyy" class="form-control"
+                            ng-model="check.date"
+                            min="minDate" readonly/>
+                        </td>
+                        <td>
+                            <input id="{{postDatedChecks[$index].accountNo}}" type="text" ng-model="check.accountNo" 
+                             class="form-control" />
+                        </td>                    
+                    </tr>
+                </table>
+                
             </div>
             <div class="form-group" ng-show="showNoteField">
                 <label class="control-label col-sm-2" for="note">{{ 'label.input.note' | translate}}</label>

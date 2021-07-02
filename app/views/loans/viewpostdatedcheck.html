@@ -1,5 +1,5 @@
 
-<div class="content-container" ng-controller="viewPostDatedChecksController">
+<div class="content-container" ng-controller="ViewPostDatedChecksController">
     <ul class="breadcrumb">
         <li><a href="#/viewloanaccount/{{loanId}}">{{'label.anchor.loans' | translate}}</a></li>
         <li class="active">{{postDatedCheckID}}</li>
@@ -7,7 +7,7 @@
     <div class="card well">
         <h3 class="bolder"> Post Dated Check
             <div class="form-group pull-right">
-             <a href="#/viewloanaccount/{{loanId}}/editpostdatedcheck/{{postDatedCheckID}}" class="btn btn-primary" has-permission='UPDATE_POST_DATED_CHECK'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
+             <a href="#/viewloanaccount/{{loanId}}/editpostdatedcheck/{{postDatedCheck.installmentId}}" class="btn btn-primary" has-permission='UPDATE_POST_DATED_CHECK'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
              <button type="button" data-ng-click="deletePostDatedCheck()" class="btn btn-danger" has-permission='DELETE_POST_DATED_CHECK'><i
                      class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
              </button>
@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.date' | translate}}</td>
-                    <td>{{postDatedCheck.date | date}}</td>
+                    <td>{{postDatedCheck.installmentDate | date}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.amount' | translate}}</td>
