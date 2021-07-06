@@ -61,10 +61,10 @@
             </thead>
             <tbody>
             <tr class="pointer-main" dir-paginate="transaction in loanTransactions | itemsPerPage: TransactionsPerPage">
-                <td class="pointer" >{{transaction.id}}</td>
+                <td class="pointer" >{{transaction.loanId}}</td>
                 <td class="pointer" >{{transaction.lastRepayment}}</td>
                 <td class="pointer" >{{transaction.remainingAmount}}</td>
-                <td class="pointer" >{{transaction.lastRepaymentDate | date}}</td>
+                <td class="pointer" >{{transaction.lastRepaymentDate.date | date}}</td>
                 <!-- <td class="pointer" data-ng-click="routeTo(collateral.id)">
                     <i class="fa fa-stop {{'collaterals.StatusType.active.' + charge.active | StatusLookup}}" uib-tooltip="{{'label.tooltip.charges.active.' + charge.active | translate}}" tooltip-placement="right"></i>
                 </td> -->

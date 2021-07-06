@@ -10,7 +10,12 @@
 
             resourceFactory.clientcollateralResource.get({clientId: scope.clientId, collateralParamId: scope.collateralId}, function (data) {
                 scope.collateral = data;
+                console.log(data);
                 scope.loanTransactions = scope.collateral.loanTransactionData;
+                for (var i=0; i<scope.loanTransactions.length; i++){
+                	scope.loanTransactions[i].lastRepaymentDate.date = new Date(scope.loanTransactions[i].lastRepaymentDate.date);
+                }
+                console.log(scope.loanTransactions)
             });
 
             scope.deleteClientCollateral = function () {
