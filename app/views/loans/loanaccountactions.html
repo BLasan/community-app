@@ -254,7 +254,19 @@
                     </div>
                 </div>
 
-                <table class="" class="width100" ng-show="action === 'disburse'">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="isPostDatedCheck">{{ 'label.input.isPostDatedCheck' | translate }}
+                    </label>
+    
+                    <div class="checkbox col-sm-2">
+                        <label>
+                            <input id="isPostDatedCheck" type="checkbox" ng-model="formData.isPostDatedCheck" ng-true-value="true"
+                                   ng-false-value="false">
+                        </label>
+                    </div>
+                </div>
+
+                <table class="" class="width100" ng-show="action === 'disburse' && formData.isPostDatedCheck == true">
                     <tr class="graybg">
                         <th>{{'label.heading.installmentId' | translate}}</th>
                         <th>{{'label.heading.name' | translate}}</th>

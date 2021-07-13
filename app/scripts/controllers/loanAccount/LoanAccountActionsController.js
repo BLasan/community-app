@@ -172,6 +172,7 @@
                     resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'disburse'}, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         scope.numberOfRepayments = data.numberOfRepayments;
+                        scope.formData.isPostDatedCheck = false;
                         scope.postDatedChecks = data.loanRepaymentScheduleInstallments;
                         console.log(data);
                         console.log(scope.postDatedChecks);
@@ -524,12 +525,14 @@
                     // Get post dated checks
                     scope.postDatedChecksArray = [];
 
-                    for (var i=0; i<scope.postDatedChecks.length; i++) {
-                        scope.postDatedChecksArray.push({amount: scope.postDatedChecks[i].amount, date: dateFilter(scope.postDatedChecks[i].date, scope.df), name: scope.postDatedChecks[i].name, 
-                                                        accountNo: scope.postDatedChecks[i].accountNo, installmentId: scope.postDatedChecks[i].installmentId});
+                    if (scope.formData.isPostDatedCheck) {
+                        for (var i=0; i<scope.postDatedChecks.length; i++) {
+                            scope.postDatedChecksArray.push({amount: scope.postDatedChecks[i].amount, date: dateFilter(scope.postDatedChecks[i].date, scope.df), name: scope.postDatedChecks[i].name, 
+                                                            accountNo: scope.postDatedChecks[i].accountNo, installmentId: scope.postDatedChecks[i].installmentId});
+                        }
+    
+                        this.formData.postDatedChecks = scope.postDatedChecksArray;
                     }
-
-                    this.formData.postDatedChecks = scope.postDatedChecksArray;
                 }
 
                 if (this.formData[scope.modelName]) {
