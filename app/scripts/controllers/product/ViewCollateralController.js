@@ -18,7 +18,7 @@
                 $scope.delete = function () {
                     resourceFactory.collateralResource.delete({collateralId: scope.collateralId}, function (data) {
                         $uibModalInstance.close('delete');
-                        location.path('/viewcollaterals/' + scope.collateralId);
+                        location.path('/viewcollateral/' + scope.collateralId);
                     });
                 };
                 $scope.cancel = function () {

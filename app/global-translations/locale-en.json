@@ -3,6 +3,7 @@
   "#Headings": "..",
   "label.heading.totalshares": "Total Shares",
   "label.heading.editcollateral": "Edit Collateral",
+  "label.heading.collaterals": "Collaterals",
   "label.heading.sharenominalprice": "Nominal/Unit Price",
   "label.heading.totalsharestobeissued": "Total Shares to be Issued",
   "label.heading.sharecapitalvalue": "Total Shares Capital Value",
