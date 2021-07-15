@@ -263,6 +263,8 @@
   "label.input.meetingcalendar": "Meeting calendar",
   "label.input.total": "Total",
   "label.input.note": "Note",
+  "label.input.isPostDatedCheck": "Is Post Dated Check ?",
+  "label.heading.installmentId": "Installment Id",
   "label.input.dueforcollectedon": "Due for collection on",
   "label.input.language": "Language",
   "label.input.dateformat": "Date format",

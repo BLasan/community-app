@@ -533,6 +533,7 @@
     
                         this.formData.postDatedChecks = scope.postDatedChecksArray;
                     }
+                    delete this.formData.isPostDatedCheck;
                 }
 
                 if (this.formData[scope.modelName]) {
